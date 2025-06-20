@@ -92,6 +92,19 @@ Provide artist and title, and the server will fetch the lyrics for you.
   "title": "Trapaholic Intro"
 }
 ```
+Example response:
+
+```
+{
+  "summary": "The song is about living a fast and reckless lifestyle filled with materialism and disregard for consequences.",
+  "emotions": [
+    "Confidence",
+    "Rebellion",
+    "Materialism"
+  ]
+}
+```
+
 ## 🔜 Planned Features
 
 •	✅ Frontend UI in React (WIP)
