@@ -16,6 +16,7 @@ This project is designed to be extensible, API-first, and integrates clean retry
 ---
 
 ## 🧱 Folder Structure
+```
 moodmapper
 ├── backend/            # FastAPI backend + utils
 │   ├── main.py
@@ -29,7 +30,7 @@ moodmapper
 │   └── test_lyricsgenius.py
 ├── .gitignore
 └── README.md
-
+```
 ---
 
 ## 🛠️ Setup
