@@ -67,6 +67,7 @@ GENIUS_API_TOKEN=your_genius_token
 ```
 uvicorn main:app --reload
 ```
+---
 
 ## API Endpoints
 
