@@ -16,11 +16,11 @@ def analyze_lyrics_with_openai(
     prompt = f"""
         You are a music expert AI. Analyze the following song lyrics.
 
-        1. Give a 1-sentence summary of what the song is about. 
+        1. Give a 2-sentences deep-analysis summary of what the song is about. 
         2. List 3 of 5 emotions that the lyrics evoke. Separate the emotions by commas.
         
-        Return first the 1-sentence summary and then the list of emotions in a different line.
-        Make sure it is only a different line (sentence \n list) and not a new paragraph (\n\n)
+        Return first the 2-sentence summary and then the list of emotions in a different line.
+        Make sure it is only a different line (2 sentences \n list) and not a new paragraph (\n\n)
         
         ❌ Do NOT include:
         - Section titles (like 'Summary:' or 'Emotions:' or 'Evoke emotions:')
@@ -28,7 +28,7 @@ def analyze_lyrics_with_openai(
         - Extra newlines (\n\n)
 
         ✅ Your response must be:
-        - One sentence summary
+        - Two sentences summary
         - Then a single line with 3 to 5 emotions, separated only by commas
         
         Lyrics:
@@ -36,15 +36,18 @@ def analyze_lyrics_with_openai(
         """
     for attempt in range(max_retries + 1):
         try:
-            response = client.responses.create(
-                model="gpt-3.5-turbo",
-                instructions="You analyze song lyrics.",
-                input=prompt,
+            response = client.chat.completions.create(
+                # model="gpt-3.5-turbo",
+                model="gpt-4o-mini-2024-07-18",
+                messages=[
+                    {"role": "system", "content": "You are a music expert AI that analyzes lyrics."},
+                    {"role": "user", "content": prompt}
+                ],
                 temperature=0.7,
-                max_output_tokens=200
+                max_tokens=200
             )
             # Parse
-            text = response.output[0].content[0].text
+            text = response.choices[0].message.content
             lines = [line.strip() for line in text.split("\n") if line.strip()]
             summary = lines[0] if len(lines) > 0 else ""
             emotions_line = lines[1] if len(lines) >1 else ""

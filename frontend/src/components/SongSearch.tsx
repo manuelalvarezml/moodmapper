@@ -69,14 +69,14 @@ export default function SongSearch() {
             </button>
 
             {(summary || (Array.isArray(emotions) && emotions.length > 0)) && (
-                <div className="mt-4 p-4 bg-black-50 border rounded space-y-2">
+                <div className="mt-6 p-6 bg-white border rounded-xl shadow space-y-4">
                     <div>
-                        <p className="font-semibold">Summary:</p>
-                        <p>{summary}</p>
+                        <p className="text-lg font-semibold text-gray-800">Summary:</p>
+                        <p className="text-gray-900">{summary}</p>
                     </div>
                     <div>
-                        <p className="font semibold">Emotions:</p>
-                        <ul className="list-disc list-inside">
+                        <p className="text-lg font-semibold text-gray-800">Emotions:</p>
+                        <ul className="list-disc list-inside text-gray-900">
                             {emotions.map((emotion, i) => (
                                 <li key={i}>{emotion}</li>
                             ))}
