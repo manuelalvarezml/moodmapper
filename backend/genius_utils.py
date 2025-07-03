@@ -20,3 +20,21 @@ def get_lyrics(
     except Exception as e:
         print()
         return ""
+    
+def search_genius_song(artist: str, title: str) -> dict:
+    """
+    Search Genius and return basic song metadata: id, url, title, and artist.
+    """
+    try:
+        song = genius.seach_song(title, artist)
+        if song:
+            return {
+                "title": song.title,
+                "artist": song.artist,
+                "id": song.id,
+                "url": song.url,
+            }
+        return None
+    except Exception as e:
+        print(f"⚠️ Error searching Genius for {title} by {artist}: {e}")
+        return None
